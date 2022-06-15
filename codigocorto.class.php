@@ -74,8 +74,16 @@
                         </select>
                   </div>
             ";
-            }else{
-    
+            }elseif ($tipo == 3) {
+                $html="
+                <diV class='from-group'>
+                    <p><b>$pregunta</b></p>
+                  <div class='col-sm-8'>  
+                  <textarea id='$detalleid' name='$detalleid' rows='4' cols='50' value='prueba'>
+                        
+                  </textarea>
+                  </div>
+            ";
             }
             return $html;
         }

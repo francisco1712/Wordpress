@@ -128,26 +128,27 @@ add_action('wp_ajax_peticioneliminar', 'EliminarEncuesta');
 function imprimirshortcode($atts){
     $_short = new codigocorto;
     //obtener el id por parametro
-    $id= $atts['id'];
-    //Programar las acciones del boton
+    $id = $atts['id'];
+    //Acciones del boton Enviar
     if(isset($_POST['btnguardar'])){
         $listadePreguntas = $_short->ObtenerEncuestaDetalle($id);
         $codigo = uniqid();
         foreach ($listadePreguntas as $key => $value) {
-           $idpregunta = $value['DetalleId'];
-           if(isset($_POST[$idpregunta])){
-               $valortxt = $_POST[$idpregunta];
-               $datos = [
-                   'DetalleId' => $idpregunta,
-                   'Codigo' => $codigo,
-                   'Respuesta' => $valortxt
-               ];
-               $_short->GuardarDetalle($datos);
-           }
+            # code...
+            $idpregunta = $value['DetalleId'];
+            if(isset($_POST[$idpregunta])){
+                $valortxt = $_POST[$idpregunta];
+                $datos = [
+                    'DetalleId' => $idpregunta,
+                    'Codigo' => $codigo,
+                    'Respuesta' => $valortxt
+                ];
+                $_short->GuardarDetalle($datos);
+            }
         }
-        return " Encuesta enviada exitosamente";
+        return " Encuesta enviada con exito";
     }
-    //Imprimir el formulario
+    //imprime el formulario
     $html = $_short->Armador($id);
     return $html;
 }
